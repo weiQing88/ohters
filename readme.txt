@@ -31,3 +31,5 @@ color-project : 选色功能
 
 
 layui-action : layui实例
+
+weixin-admin ： vue 实例
