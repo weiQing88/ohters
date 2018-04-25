@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	  *{
+	  	margin: 0;
+	  	padding: 0;
+	  }
+      #resizable_box{
+      	 width: 500px;
+      	 height: 300px;
+      	 margin: 0 auto;
+      	 background-color: teal;
+      	 position: relative;
+      }
+      #resizable_bar{
+      	position: absolute;
+      	right: 0;
+      	width: 10px;
+      	height: 100%;
+      	background-color: red;
+      	cursor: e-resize;
+
+      }
+	 </style>
+</head>
+<body>
+	
+<div id="resizable_box">
+   <span id="resizable_bar"></span>
+ </div>
+
+
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+
+    var movingTimer = 0,  // 如果是0则是没有移动
+       mStartX = 0, // 鼠标相对 控制元素的位置
+       mToX = 0,  // 鼠标的新位置
+       cX = 0;  // 当前位置 
+
+
+
+    var ctrlNode =  $('#resizable_bar').get(0),
+        boxNode = $('#resizable_box').get(0);
+
+
+      function onMouseDownAction(e,ctrl){
+      	   // 计算鼠标在页面上的位置
+      	   // 鼠标在当前元素的位置
+      	  
+      	    mStartX = e.pageX - $(ctrl).position().left;
+
+      	   // 开始移动动作
+ 		    movingTimer = setInterval(movingAction,10);
+      	   
+      }
+
+
+   function movingAction(){
+   	     if(movingTimer){
+   	     	    var x = mToX - mStartX;
+   	     	   	cX =  Math.max(x,60);
+
+   	     	 	ctrlNode.style.left = cX + 'px';
+   	     	    boxNode.style.width = cX  + 10 + 'px';
+   	     }
+   }
+
+
+
+ 
+
+  // 页面鼠标移动侦听处理 (重要)
+	document.onmousemove = function(e){
+		var e = window.event || e;
+		  mToX = e.pageX;
+	};
+  
+  	//	鼠标弹起处理
+	document.onkeyup = document.onmouseup = function(e){
+		clearInterval(movingTimer);
+		movingTimer = 0;
+		ctrlNode.style.left = ''; // (重要)
+
+	}
+
+
+  $('#resizable_bar').on('mousedown',function(event){
+  		   onMouseDownAction(event,this)
+  });
+	
+
+</script>
+</body>
+</html>

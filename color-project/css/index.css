@@ -1,0 +1,177 @@
+*{margin:0;padding:0}
+body,html{width:100%;height:100%;margin:0 auto}
+body{font-size:14px; color:#b4bcc8; font-weight:normal;}
+body,button,input,pre,select,textarea{font-family:Helvetica,Tahoma,Arial,STXihei,"华文细黑","Microsoft YaHei","微软雅黑",SimSun,"宋体",Heiti,"黑体",sans-serif}
+.fl{float:left}
+.fr{float:right}
+.ovhide{overflow:hidden}
+address,em,i,s{font-style:normal}
+button,input,select{background-color:transparent;border:none;outline:0}
+button::-moz-focus-inner { border:0; padding:0;}
+input,textarea:focus{outline:0}
+input{-webkit-appearance:none}
+input:-webkit-autofill{background-color:#FAFFBD;background-image:none;color:#000}
+table{border-spacing:0;border-collapse:collapse}
+ol,ul{list-style:none}
+a,ins,s{text-decoration:none;outline:0}
+textarea{outline:0;border:1px solid #e5e5e5}
+img{display:block;max-width:100%;border:none}
+.clearfix:after{content:".";display:block;height:0;visibility:hidden;clear:both;zoom:1}
+.none{display:none}
+.ew{white-space:nowrap;text-overflow:ellipsis;-webkit-text-overflow:ellipsis;-o-text-overflow:ellipsis;overflow:hidden}
+.animated{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}
+.boxSizing{box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}
+.enableGPU{-webkit-transform:translate3d(0,0,0);-moz-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+.bred{border:1px solid red}
+
+
+
+
+
+
+
+#outer-wrapper{
+	width:600px;
+	margin:50px auto;
+	border:1px solid #ddd;
+	padding:10px;
+	border-radius: 10px;
+	position:relative;
+}
+
+.colorPicker-wrapper{
+	 width:600px;
+	 position:relative;
+	 background-color:#f6f6f6;
+}
+
+
+.addColorBar,
+.submitColor
+{
+	float:right;
+	text-align:center;
+	height:35px;
+	line-height: 35px;
+	cursor:pointer;
+	background-color:#c9c8c8;
+	color:#fff;
+}
+.addColorBar:hover,
+.submitColor:hover{
+	 background-color:#b4b4b4;
+}
+
+
+.addColorBar{ width:50px; }
+.submitColor{
+    width:49px;
+    border-left: 1px solid #fff;
+}
+
+
+
+
+
+.colorPicker-box{
+	float:left;
+	width:500px;
+	height:35px;
+	text-align:center;
+	
+}
+
+
+
+.colorPicker-box .cell-box{
+	width: 100%;
+	position:relative;
+	vertical-align: top;
+}
+.colorPicker-box .cell-box input{
+      display:block;
+	  width:100%;
+	  height:35px;
+	  text-align:center;
+	  color:#FFF;
+}
+
+.colorPicker-box .cell-box i,
+.colorPicker-box .cell-box em{
+	 display:none;
+	 position:absolute;
+	 width:25px;
+	 height:25px;
+	 line-height:25px;
+	 text-align:center;
+	 cursor: pointer;
+}
+
+.colorPicker-box .cell-box i{
+	 left:10px;
+	 top:4px;
+	 background:url('../images/delete.png') no-repeat center;
+}
+
+.colorPicker-box .cell-box em{
+     left:30px;
+	 top:4px;
+	 background:url('../images/refine.png') no-repeat center;
+}
+
+
+
+
+
+
+
+#colorApp{
+	display:none;
+	position:absolute;
+	top:35px;
+	left:10%;
+	width: 195px;
+    height: 195px;
+}
+
+
+
+
+   #jqColorApp-box{
+      width: 100%;
+      position: absolute;
+      top: 55px;
+      left: 2%;
+      display: none;
+   }
+   #jqColorApp{ width: 100%; margin-top: 10px; }
+
+
+
+
+ .grip{
+  width:20px;
+  height:15px;
+  margin-top:-3px;
+  background-image:url('../images/grip.png');
+  margin-left:-3px;
+  position:relative;
+  z-index:88;
+  cursor:e-resize;
+}
+
+.grip:hover{
+  background-position-x:-24px;
+
+}
+
+.JCLRLastGrip .grip{
+    background-position-y:-18px;
+    left:-2px;
+}
+
+.dragging .grip{
+     background-position-x:-84px;
+}
+
+

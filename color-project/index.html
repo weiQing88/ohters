@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+  <link rel="stylesheet" href="./css/index.css">
+
+  <link rel="stylesheet" href="./js/farbtastic12/farbtastic/farbtastic.css">
+  <link rel="stylesheet" href="./css/jquery.bigcolorpicker.css">
+
+  <link rel="stylesheet" href="./js/jpicker-1.1.6/css/jPicker-1.1.6.css">
+  
+
+</head>
+<body>
+
+
+<div id="outer-wrapper">
+ <div class="colorPicker-wrapper clearfix">
+   <table border="0" cellpadding="0" cellspacing="0" class="colorPicker-box" id="ResizableTable">
+      <tr></tr>
+      </table>
+     <button type="button" class="submitColor boxSizing">提交</button>
+     <button type="button" class="addColorBar boxSizing">选色</button>
+    <div id="colorApp"></div>
+ </div>
+  <div id="jqColorApp-box">
+    <div id="jqColorApp"></div>
+   </div>
+ 
+</div>
+
+
+
+
+<script src="./js/jquery.min.js"></script>
+
+<script src="./js/farbtastic12/farbtastic/farbtastic.js"></script>
+
+<script src="./js/jquery.bigcolorpicker.js"></script>
+
+<script src="./js/jquery-base64/jquery.base64.js"></script>
+
+<script src="./js/jpicker-1.1.6/jpicker-1.1.6.min.js"></script>
+
+<script src="./js/colResizable-1.6.min.js"></script>
+
+
+
+
+<script>
+
+
+
+ 
+
+ $.fn.colorPickerTool_2 = function(){
+
+        var pointer = this,
+            tableNode = this.children('.colorPicker-box'),
+            addButton = this.children('.addColorBar'),
+            tableWidth = tableNode.width(),
+            isCreate = true, // 如果未选色，可动过点击 
+            liveTarget = null;   // 针对指定的元素进行调色
+
+    
+         // 百分比计算
+         var  computedPercent = function(){
+                var columns =  tableNode.find("th");
+                var ranges = [], 
+                  total = 0, 
+                  i, 
+                  percent = [],
+                  w;
+
+                  console.log();
+
+                for(i = 0; i<columns.length; i++){
+                  w = columns.eq(i).width()-10 - (i==0?1:0);
+                  ranges.push(w);
+                  total+=w;
+                }    
+
+                for(i=0; i<columns.length; i++){  
+
+                  ranges[i] = 100*ranges[i]/total;
+
+                  carriage = ranges[i]-w;
+
+                   columns.eq(i).find('input').val(Math.round(ranges[i]) + "%")
+
+                }   
+
+              }
+              
+
+  
+           // 缩放插件执行函数
+           function applyColresizable(){
+                         $("#ResizableTable").colResizable({
+                            liveDrag:true, 
+                            gripInnerHtml:"<div class='grip'></div>", 
+                            draggingClass:"dragging", 
+                            resizeMode:'fit',
+                            onResize : function(){},
+                            onDrag : computedPercent
+                        });
+           }
+
+        
+
+
+
+
+        // 添加色彩栏 start 
+        function addColorCell(color){
+
+                  var i = 0;
+                  var trNode = tableNode.find('tr'),
+                      thLen = tableNode.find('th').length;
+
+                      // 如果已经有 4 条，则禁止添加
+                      if(thLen === 4) return false; 
+
+
+                  //在操作dom之前，先禁止 colResizable  
+                   tableNode.colResizable({disable:true});
+
+                  //添加栏目 
+                  trNode.append('<th style="background-color:'+ color +';"> \
+                                     <div class="cell-box">\
+                                      <i class="delectColorBar"></i>\
+                                       <em class="resetcolor" ></em>\
+                                       <input type="text" readonly value="">\
+                                      </div>\
+                                  </th>');
+
+
+                // 重设 td 宽度
+                var thNode = tableNode.find('th'),
+                     len = thNode.length || 1,
+                     w = 100 / ( len + 1 ) + "%",
+                     w = w > 100 ? 100 : w;
+                    
+                     thNode.width(w);
+
+                  // 百分比计算，赋值
+                   computedPercent();
+
+                  //再次调用 colResizable  
+                   applyColresizable();
+
+        }
+
+        // 添加色彩栏 end
+
+
+
+
+         // 删除色彩栏
+         function deletedColorCell(This){
+             //在操作dom之前，先禁止 colResizable  
+              tableNode.colResizable({disable:true});  
+
+               $(This).parents('th').remove();
+
+               if(tableNode.find('th').length <= 0 ) return false
+
+                // 重设 td 宽度
+                var thNode = tableNode.find('th'),
+                     len = thNode.length || 1,
+                     w = 100 / len + "%",
+                     w = w > 100 ? 100 : w;
+                    
+                     thNode.width(w);
+
+                  // 百分比计算，赋值
+                   computedPercent();
+
+                  //再次调用 colResizable  
+                   applyColresizable();
+
+         }
+
+
+
+
+
+                  // 初始化颜色选择APP
+                   $('#jqColorApp').jPicker({
+                                          color: {
+                                             mode : 'h'
+                                          },
+                                          images : {
+                                              clientPath : 'images/'
+                                          },
+                                          localization : {
+                                              text : {
+                                                   title : '拖动圆环选色',
+                                                   newColor: '新色',
+                                                   currentColor: '当前色',
+                                              }
+                                          }
+                                        },function(color,context){   // 点击 ok 按键 回调函数
+                                                       currColor = '#' + color.val().hex;
+                                                       context.context.parentNode.style.display = 'none';  
+                                                       isCreate &&  addColorCell(currColor);
+                                                       isCreate = true;
+                                              },
+                                              function(color,context){ // 鼠标在色板上滑动回调函数
+                                                       liveColor = '#' + color.val().hex;
+                                                       liveTarget && liveTarget.css('background-color',liveColor)
+
+                                              },
+                                              function(color,context){   // 点击取消回调函数
+                                                     context.context.parentNode.style.display = 'none';  
+                                                     isCreate = true;
+                                              });
+
+
+
+
+     // 打开选色板   
+      addButton.on('click',function(){  $('#jqColorApp-box').show()  });
+
+
+
+     // 显示或隐藏 删除按钮
+      tableNode.on('mouseover','th',function(){
+                    $(this).find('i').show();
+                     $(this).find('em').show();
+             })
+             .on('mouseout','th',function(){
+                   $(this).find('i').hide();
+                   $(this).find('em').hide();
+             });
+
+
+
+
+        // 删除 colorBar
+        tableNode.on('click','i.delectColorBar',function(event){
+                        deletedColorCell(this);
+                        event.stopPropagation();
+                        return false;
+                  });
+
+
+
+  
+     
+   // 如果还色彩栏,父元素也可以打开选色器
+   tableNode.on('click',function(event){
+         if($(this).find('th').length <= 0) addButton.trigger('click');
+          event.stopPropagation();
+   });
+
+
+
+
+     // 针对指定色彩栏调色
+      tableNode.on('click','em',function(){   
+           liveTarget = $(this).parents('th');  
+           isCreate = false; 
+           $('#jqColorApp-box').show();
+
+      });
+
+
+
+
+ };
+
+ /*      colorPickerTool_2 END    */
+
+
+
+// 调用选色
+ $('.colorPicker-wrapper').colorPickerTool_2();
+
+
+
+
+
+
+
+$('.submitColor').on('click',function(){
+
+           var colorBars = $('.colorBar'),
+               len = colorBars.length,
+               param = [];
+              if(len <= 0) return false; 
+
+              colorBars.each(function(index,item){
+            
+                       param.push({
+                                 color : $(item).attr('data-color'),
+                                  percent : $(item).attr('data-percent')
+                                  });
+
+              });
+
+           console.log(param);
+
+          console.log($.base64.encode(param) + '.html');
+            
+
+       /* 
+          $.post('http://wow-find.cc/gallery/index/',{param},function(resp){
+          })*/
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
