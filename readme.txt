@@ -28,3 +28,6 @@ npm install --save @types/jquery
 
 
 color-project : 选色功能
+
+
+layui-action : layui实例

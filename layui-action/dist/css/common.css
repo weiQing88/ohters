@@ -1,0 +1,121 @@
+/* here you can put your own css to customize and override the theme */
+* {
+  margin: 0;
+  padding: 0;
+}
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+body {
+  font-size: 14px;
+  color: #b4bcc8;
+  font-weight: normal;
+}
+body,
+button,
+input,
+pre,
+select,
+textarea {
+  /*  font-family:Helvetica,Tahoma,Arial,STXihei,"华文细黑","Microsoft YaHei","微软雅黑",SimSun,"宋体",Heiti,"黑体",sans-serif*/
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.ovhide {
+  overflow: hidden;
+}
+address,
+em,
+i,
+s {
+  font-style: normal;
+}
+button,
+input,
+select {
+  background-color: transparent;
+  border: none;
+  outline: 0;
+}
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+input,
+textarea:focus {
+  outline: 0;
+}
+input {
+  -webkit-appearance: none;
+}
+input:-webkit-autofill {
+  background-color: #FAFFBD;
+  background-image: none;
+  color: #000;
+}
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+ol,
+ul {
+  list-style: none;
+}
+a,
+ins,
+s {
+  text-decoration: none !important;
+  outline: 0 !important;
+}
+textarea {
+  outline: 0;
+  border: 1px solid #e5e5e5;
+}
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+  zoom: 1;
+}
+.none {
+  display: none;
+}
+.ew {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+}
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.boxSizing {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.enableGPU {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.bred {
+  border: 1px solid red;
+}
+.p10 {
+  padding: 10px 10px 0 10px;
+}

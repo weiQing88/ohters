@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" type="text/css" href="./libraries/layui/css/layui.css">
+	<link rel="stylesheet" type="text/css" href="./css/index.css">
+	<!-- IE8/9支持媒体查询-->
+	<!--[if lt IE 9]>
+	  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+	  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body class="layui-layout-body">
+
+
+<!-- layui-layout-admin START -->
+<div class="layui-layout layui-layout-admin">
+
+ <!--   layui-header START  -->
+<div class="layui-header">
+	<div class="layui-logo">
+		装逼犯与他的后台模板
+	</div>
+	<!-- 头部区域（可配合layui已有的水平导航） -->
+	<ul class="layui-nav layui-layout-left">
+		<li class="layui-nav-item"><a href="">第一监区</a></li>
+		<li class="layui-nav-item"><a href="">第二监区</a></li>
+		<li class="layui-nav-item"><a href="">第三监区</a></li>
+		<li class="layui-nav-item">
+		<a href="javascript:;">其它系统</a>
+		<dl class="layui-nav-child">
+			<dd><a href="">消防管理</a></dd>
+			<dd><a href="">医疗管理</a></dd>
+			<dd><a href="">餐饮管理</a></dd>
+		</dl>
+		</li>
+	</ul>
+	<ul class="layui-nav layui-layout-right">
+		<li class="layui-nav-item">
+		<a href="javascript:;">
+		<img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          所长
+		</a>
+		<dl class="layui-nav-child">
+			<dd><a href="">基本资料</a></dd>
+			<dd><a href="">安全设置</a></dd>
+		</dl>
+		</li>
+		<li class="layui-nav-item"><a href="">革职</a></li>
+	</ul>
+</div>
+<!--   layui-header END  -->;
+
+ <!--   layui-side START  -->
+<div class="layui-side layui-bg-black">
+	<div class="layui-side-scroll">
+		<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+		<ul class="layui-nav layui-nav-tree" lay-filter="test">
+			<li class="layui-nav-item layui-nav-itemed">
+			<a class="" href="javascript:;">小程序管理</a>
+			<dl class="layui-nav-child">
+				<dd><a href="javascript:;">图片列表</a></dd>
+				<dd><a href="javascript:;">音频列表</a></dd>
+				<dd><a href="javascript:;">视频列表</a></dd>
+			</dl>
+			</li>
+			<li class="layui-nav-item">
+			<a href="javascript:;">中度装逼犯</a>
+			<dl class="layui-nav-child">
+				<dd><a href="javascript:;">一号</a></dd>
+				<dd><a href="javascript:;">二号</a></dd>
+				<dd><a href="./login.html">超链接22</a></dd>
+			</dl>
+			</li>
+			<li class="layui-nav-item"><a href="">重度装逼犯</a></li>
+			<li class="layui-nav-item"><a href="">死刑犯</a></li>
+		</ul>
+	</div>
+</div>
+<!--   layui-side END  -->;
+
+
+<!--  layui-body START  -->
+  <div class="layui-body" data-type="index">  <!-- pictureList.html  audioList.html  vedioList.html -->
+	   <!-- 内容主体区域 start -->
+    <section class="p10" id="wx-vedio-main">
+    	  <div class="t-btn clearfix">
+	<h4 class="fl">视频上传</h4>
+	<button type="button" class="layui-btn layui-btn-small" id="uploadBtn"><i class="layui-icon">&#xe67c;</i>上传视频</button>
+</div>;
+         <!-- <table id="vedioTable" lay-filter="vedioTable"></table> -->
+
+       <div id="vedioApp">
+       	  <p v-html="msg"></p>
+       	  <component-one></component-one>
+       	  <one-component></one-component>
+       </div>
+
+    </section>
+   <!-- 内容主体区域 end -->;	  
+  </div>
+<!--  layui-body END  -->
+
+  
+  <!--   layui-footer START  -->
+  <div class="layui-footer">
+  	© 劳教集中营 - 堡垒固若金汤
+  </div>
+ <!--   layui-footer END  -->;
+
+
+</div>
+<!-- layui-layout-admin END -->
+
+
+ <!-- core files  -->
+<script src="./libraries/mock-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./libraries/underscore.js" type="text/javascript" charset="utf-8"></script>
+<script src="./libraries/vue_2.5.1/vue.js" type="text/javascript" charset="utf-8" ></script>
+<script type="text/javascript" src="./libraries/layui/layui.js"></script>
+;
+
+ <script src="../js/index.js" type="text/javascript" ></script>
+
+
+</body>
+</html>

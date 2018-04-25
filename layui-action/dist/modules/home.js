@@ -1,0 +1,1 @@
+layui.define(function(o){console.log("i must do something to prove that i am right."),o("home",{aAction:function(){console.log("A action")},bAction:function(){console.log("B action")}})});

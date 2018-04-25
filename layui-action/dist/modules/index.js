@@ -1,0 +1,1 @@
+layui.use("element",function(){layui.element}),layui.config({base:"./js/"}).use("entry");
