@@ -25,6 +25,8 @@ npm install --save @types/jquery
 手册： https://ts.xcatliu.com/basics/type-of-array.html
 
 
+create-react-app support decorators
+https://www.leighhalliday.com/create-react-app-mobx-decorators
 
 
 color-project : 选色功能

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, maximum-scale=1" />
+  <title>欢迎页面</title>
+   <link rel="stylesheet" href="./libraries/Swiper-3.4.2/dist/css/swiper.min.css" />
+   <link rel="stylesheet" href="./css/index.css" />
+</head>
+<body>
+
+
+<!-- 音乐播放区 start -->
+<button type="button" id="playMusic" class="pausedMusic"></button>
+<audio id='bgm'  controls preload loop="loop">
+ <source src="./images/Stoner_Take_a_Bow.mp3" type="audio/mpeg">
+您的浏览器不支持 audio 元素。
+</audio>
+<!-- 音乐播放区 end -->
+
+
+
+<!-- order-welco start  -->
+<div class="order-welcome">
+
+  <img src="./images/welcome.jpg" alt="">
+    <!--  swiper_home start  -->
+   <div class="swiper_home">
+      <div class="swiper-container">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide">
+		          <img data-src="./images/temp1.jpg"  class="swiper-lazy" alt="">
+		           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+		            </div>
+		         <div class="swiper-slide">
+		          <img data-src="./images/temp2.jpg"  class="swiper-lazy" alt="">
+		           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+		            </div>
+
+		          <div class="swiper-slide">
+		          <img data-src="./images/temp3.jpg"  class="swiper-lazy" alt="">
+		           <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+		            </div>
+		     </div>
+		</div>
+    </div>
+     <!--  swiper_home end  -->
+   <a href="javascript:void(0)">马上报名</a>
+ </div>
+<!-- order-welco end  -->
+
+
+
+ 
+ <!-- 向上箭头 start -->
+ <span id="swipe_up">
+<svg t="1507709813138" class="icon" style="" viewBox="0 0 1140 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2689" xmlns:xlink="http://www.w3.org/1999/xlink" width="71.25" height="64"><defs><style type="text/css"></style></defs><path d="M 597.072 33.4662 c -5.07532 -4.74578 -11.7853 -7.36535 -18.8248 -7.36535 c -7.03767 0 -13.8296 2.61958 -18.8193 7.36535 L 597.072 33.4662 Z M 559.342 33.4662 L 52.2091 519.079 c -22.1798 21.2769 -20.8691 56.8748 1.38892 78.0716 c 22.1761 21.2787 58.1874 21.4407 80.4454 0.161978 L 578.165 172.421 l 444.206 424.889 c 22.34 21.2787 58.1818 21.1167 80.4399 -0.161978 c 22.2599 -21.1968 23.5688 -56.7929 1.31072 -78.0716 L 597.07 33.4662 L 559.342 33.4662 M 597.398 410.319 c -5.07345 -4.91148 -11.8654 -7.61298 -18.9012 -7.61298 c -7.03767 0 -13.8333 2.7015 -18.823 7.61298 L 597.398 410.319 Z M 559.672 410.319 l -506.973 485.447 c -22.258 21.3606 -20.9492 56.8748 1.30886 78.1535 c 22.2618 21.2769 58.1055 21.4407 80.3635 0.08192 l 444.124 -424.973 l 444.2 424.975 c 22.3418 21.2769 58.1855 21.113 80.4454 -0.08192 c 22.2599 -21.2787 23.6507 -56.8748 1.30886 -78.1535 L 597.398 410.321 L 559.672 410.319" fill="#ffffff" p-id="2690"></path></svg>
+  </span>
+ <!-- 向上箭头 end -->
+
+
+
+<script src="./libraries/jquery-2.1.4.min.js"></script>
+<script src="./libraries/Swiper-3.4.2/dist/js/swiper.min.js"></script>
+<script>
+// 设置html字体大小
+var flag = 10;
+if(window.devicePixelRatio >= 4) flag = 11; 
+ document.getElementsByTagName('html')[0].style.fontSize = document.body.clientWidth / flag + 'px'; 
+
+ var mySwiper = new Swiper ('.swiper-container', {direction: 'horizontal',loop: true,autoplay:3000,autoplayDisableOnInteraction:false,lazyLoading : true})   
+
+</script> 
+<script src="js/common.js"></script>
+</body>
+</html>

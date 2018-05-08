@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1, maximum-scale=1" />
+  <title>发布会活动</title>
+  <link rel="stylesheet" type="text/css" href="./libraries/layer-mobile/need/layer.css" />
+   <link rel="stylesheet" href="./css/index.css" />
+   <script src="./libraries/fastclick.min.js"></script>
+</head>
+<body>
+
+
+<!-- 音乐播放区 start -->
+<button type="button" id="playMusic" class="pausedMusic"></button>
+<audio id='bgm' controls preload loop="loop">
+ <source src="./images/Stoner_Take_a_Bow.mp3" type="audio/mpeg">
+您的浏览器不支持 audio 元素。
+</audio>
+<!-- 音乐播放区 end -->
+
+
+ <div class="order-bg">
+ <div class="order-form" id='order-App'>
+
+     <figure>
+         <img src="./images/logo.jpg" class="logo" alt="">
+          <img src="./images/hbs.png"  class="hbs"alt="">
+          <h3><em>衍 <i>•</i> 生 </em><br /> 2018春夏趋势成衣主题订货会</h3>
+          <img src="./images/hbx.png" class="hbx" alt="">
+      </figure>
+
+    <dl>
+      <dt>注意事项：</dt>
+      <dd>您所填写的信息我们会进行详细审核，审核通过即可参加订货会，请填写真实有效信息，谢谢您的配合。</dd>
+     </dl>
+
+     <form>
+
+       <div class="contrl clearfix" ref="company" >
+          <label>公司名称：</label>
+          <input type="text" v-model.lazy="formData.company" placeholder="请输入公司" v-on:focus="onF" /> 
+         </div>
+
+        <div class="contrl clearfix hasSelect" ref="scale" v-on:change="onF">
+          <label>规模：</label>
+           <select v-model="formData.scale" >
+            <option value="">请选择</option>
+             <option value="10-50">10-50人</option>
+              <option value="50-100">50-100人</option>
+               <option value="100以上">100人以上</option>
+            </select>
+         </div>
+
+          <div class="contrl clearfix" ref="name" >
+           <label>姓名：</label>
+           <input type="text" v-model.lazy="formData.name" placeholder="请输入姓名" v-on:focus="onF"/>
+           </div>
+
+          <div class="contrl clearfix" ref="position" >
+          <label>职位：</label>
+          <input type="text" v-model.lazy="formData.position" placeholder="请输入职位" v-on:focus="onF"/>
+          </div>
+
+          <div class="contrl clearfix"  ref="tel" >
+          <label>手机号码：</label>
+          <input type="text" v-model.lazy="formData.tel" placeholder="请输入手机" v-on:focus="onF"/>
+          </div>
+
+         <div class="contrl-other clearfix" ref="code" >
+          <label>验证码：</label>
+           <input type="text" v-model.lazy="formData.code" placeholder="请输入验证码" v-on:focus="onF"/>
+           <button type="button" v-on:click="getCodeAction" v-bind:class="{disabled : disabled}" v-bind:disabled="disabled" >获取验证码</button>
+          </div>
+
+  
+        
+          <div class="contrl-list clearfix" ref="style">
+             <h4>所需货品风格：（可多选）</h4>
+              <label >浪漫优雅、中淑、年轻女性<input type="checkbox" v-on:click.stop="checkboxAction($event,1)" name="type"  value="style1" /></label>
+              <label >休闲舒适、时尚简约<input type="checkbox" v-on:click.stop="checkboxAction($event,2)"  name="type" value="style2" /></label>
+              <label  >棉麻舒适、轻文艺<input type="checkbox" v-on:click.stop="checkboxAction($event,3)"  name="type" value="style3" /></label>
+            </div>
+
+
+         <div class="contrl-list" ref="city">
+             <h4>参加场次：</h4>
+
+             <label>10.18-10.20 &nbsp;&nbsp;&nbsp;深圳 &nbsp;&nbsp;蛇口TCL大厦B栋3A<input type="radio"  v-on:click.stop="radioAction"  value="10-18-19-20-shenzhen" name="session" /></label>
+             <label>10.23-10.24 &nbsp;&nbsp;&nbsp;杭州 &nbsp;&nbsp;远方科技中心16楼<input type="radio"   v-on:click.stop="radioAction" value="10-23-24-hangzhou" name="session" /></label>
+             <label>10.27 &nbsp;&nbsp; 成都 &nbsp;&nbsp;春熙路尚都广场12楼<input type="radio"  v-on:click.stop="radioAction"  value="10-27-chengdu" name="session" /></label>
+             <label>11.01-11.02 &nbsp;&nbsp;&nbsp;北京 &nbsp;&nbsp;798艺术区D10<input type="radio"  v-on:click.stop="radioAction"  value="11-1-2-beijing" name="session" /></label>
+
+             
+           </div>
+
+         <button type="button" class="btn" v-on:click="sendingAction" >确认提交</button>
+
+      </form>
+
+  </div>
+</div>
+
+
+
+
+<script src="./libraries/jquery-2.1.4.min.js"></script>
+<script src="./libraries/vue.js"></script>
+<script src="./libraries/mock-min.js"></script>
+<script src="./libraries/layer-mobile/layer.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+
+
+
+<script>
+// 设置html字体大小
+var flag = 10;
+if(window.devicePixelRatio >= 4) flag = 11; 
+ document.getElementsByTagName('html')[0].style.fontSize = document.body.clientWidth / flag + 'px'; 
+
+
+// 微信获取用户信息值
+ window.initValue = {
+              company : '深圳热点资讯',
+              name : '大毛',
+              position : '销售顾问',
+              tel : 13641439075
+         };
+
+window.urlObje = {
+     getCodeUrl : 'xx.json',
+     sendInfoUrl : 'xx.json'
+  }; 
+
+
+
+// 微信配置
+window.wxConfig = {
+         appId: '{$wxconfig.appId}', // 必填，公众号的唯一标识
+        timestamp: '{$wxconfig.timestamp}', // 必填，生成签名的时间戳
+        nonceStr: '{$wxconfig.nonceStr}', // 必填，生成签名的随机串
+        signature: '{$wxconfig.signature}',// 必填，签名，见附录1
+        desc: 'WOW-TREND&TT+ 2018趋势成衣主题订货会',
+        link:"{$shareLink}{:U('dh/welcome')}",
+        imgUrl: "__STATIC_DOMAIN__dh/images/sharePreview.jpg", // 分享图标
+}
+
+
+
+
+
+</script> 
+<script src="js/common.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>
